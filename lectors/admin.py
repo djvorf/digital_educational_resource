@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
+
 from .models import Lector, Reviews, LectorImages
 
 
@@ -31,9 +33,14 @@ class ReviewAdmin(admin.ModelAdmin):
 
 @admin.register(LectorImages)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ("title", "description", "image", "lector")
-    list_display_links = ("title", "description", "image", "lector")
+    list_display = ("title", "description", "image", "lector", "get_image")
+    list_display_links = ("title", "description", "image", "lector", "get_image")
     list_filter = ("title", "description", "image", "lector")
     search_fields = ("title", "description", "image", "lector")
     save_on_top = True
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src = {obj.image.url} width="60" height="60"')
+
+    get_image.short_description = "Изображение"
 
