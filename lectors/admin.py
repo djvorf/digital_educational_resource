@@ -1,7 +1,17 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import Lector, Reviews, LectorImages
+
+
+class LectorAdminForm(forms.ModelForm):
+    content = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Lector
+        fields = '__all__'
 
 
 class LectorImageInline(admin.StackedInline):
@@ -24,6 +34,7 @@ class LectorAdmin(admin.ModelAdmin):
     search_fields = ("name", "numberPart")
     inlines = [LectorImageInline, ]
     save_on_top = True
+    form = LectorAdminForm
     list_editable = ("draft", )
     fieldsets = (
         (None, {

@@ -93,7 +93,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <h2 class="lection__title" align="center">{{ lector.numperpart }}<br>{{ lector.name }}</h2>
-                    <p class="lection__text1">{{ lector.content}}</p>
+                    <p class="lection__text1">{{ lector.content|safe }}</p>
                 </div>
                 {% for image in lector.lectorimages_set.all %}
                     <img class="logo32" src="{{ image.image.url }}"  alt="{{ image.title }}">
