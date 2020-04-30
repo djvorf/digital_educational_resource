@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Цор</title>
+</head>
+
+<body>
+
+    <div id="toTop"><i class="fas fa-chevron-up"></i></div>
+    <header class="menu-bar">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2 logo-bar">
+                    <img src="{% static 'img/polytech.png' %}" alt="Ебучий ЦОР" class="logo">
+                    <button class="menu-icon"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class="col-xl-8 ml-auto align-self-center">
+                    <nav>
+                        <ul class="menu d-flex justify-content-end">
+                            <li class="menu__item"><a href="/"><i class="fas fa-home"></i></a></li>
+                            <li class="menu__item"><a href="#about">О нас</a></li>
+                            <li class="menu__item"><a href="#contact">Наши контакты</a></li>
+                            <li class="menu__item"><a onclick="show1('block')" >Авторизация</a></li>
+                            <li class="menu__item"><a onclick="show('block')" >Регистрация</a></li>
+
+                            <div onclick="show('none')" id="gray"></div>
+                            <div id="window">
+                                <img class="close" src="{% static 'img/close.png' %}" alt="" onclick="show('none')">
+                                <div class="form1">
+                                    <h2 class="textreg">Регистрация</h2>
+                                    <form action="index1.html" name="f1">
+                                        <input type="text" placeholder="Ваше Имя" name="name" class="input">
+                                        <input type="text" placeholder="Ваша Фамилия" name="lastname" class="input">
+                                        <input type="text" placeholder="Ваша логин" name="login" class="input">
+                                        <input type="email" placeholder="Ваша почта" name="mail" class="input">
+                                        <input type="password" placeholder="Придумайте Пароль" name="password" class="input">
+                                        <input type="password" placeholder="Подтвердите Пароль" name="passwordpovt" class="input">
+                                        <input type='number' placeholder="Мобильный телефон" name="number" class="input">
+                                        <input type="submit" value="Регистрация" name="sab" class="input">
+                                        <div class="recover1">
+                                            <input type="checkbox" id="ckbox">
+                                            <label for="ckbox">Ознакомлен(-а) и принимаю Ислам <a href="#">условия регистрации</a></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div onclick="show1('none')" id="silver"></div>
+                            <div id="window1">
+                                <img class="close" src="{% static 'img/close.png' %}" alt="" onclick="show1('none')">
+                                <div class="form2">
+                                    <h2 class="textreg">Авторизация</h2>
+                                    <form action="index1.html" name="f2">
+                                        <input type="email" placeholder="Ваша почта" name="mail" class="input">
+                                        <input type="password" placeholder="Пароль" name="password" class="input">
+                                        <input type="radio" name="radio1"> Запомнить меня</form>
+                                        <input type="submit" value="Авторизация" name="sab" class="input">
+                                        <label for="text">Я забыл и хочу <a href="#">восстановить пароль</a></label>
+                                </div>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <h1 class="header__title">Моделирование производственных и экономических процессов</h1>
+                    <p class="header__text">Цифровой образовательный ресурс</p>
+                    <a href="lectors" class = "button">Курсы</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <h2 class="about__title">О нас</h2>
+                    <p class="about__text">«ЦОР» - это представленные в цифровой форме фото, видеофрагменты и видеоруководства, статические и динамические модели, объекты виртуальной реальности и интерактивного моделирования, графические и картографические материалы, звукозаписи,
+                        аудиокниги, различные символьные объекты и деловая графика, текстовые бумаги и другие учебные материалы, нужные для организации учебного процесса.</p>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="col-xl-3 col-md-6">
+                    <img src="{% static 'img/internet.png' %}" alt="">
+                    <h3 class="about_h3">Лучшие задания</h3>
+                    <p class="about_text">Задача, сформулированная обучающим и предписанная для выполнения обучаемому в процессе обучения. З. всегда содержит в себе некоторое требование: ответить на вопрос, выполнить какое-то упражнение, доказать или опровергнуть что-то и
+                        т. п.!</p>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <img src="{% static 'img/transfer.png' %}" alt="">
+                    <h3 class="about_h3">Лучшие лекции</h3>
+                    <p class="about_text">Устное систематическое и последовательное изложение материала по какой-либо проблеме, методу, теме вопроса и т. д.!</p>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <img src="{% static 'img/head.png' %}" alt="">
+                    <h3 class="about_h3">Лучший колледж</h3>
+                    <p class="about_text">Ведущее учебное заведение на образовательном рынке столицы. Политехнический колледж, созданный в 1994 году на базе четырех техникумов, вобрал в себя лучшее из того передового опыта, который десятилетиями помогал педагогам города готовить
+                        блестящие профессиональные кадры республики. г. Нур-Султан (Астана)!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8">
+                    <h2 class="about__title">Наши контакты</h2>
+                    <p class="about__text">Ведущее учебное заведение на образовательном рынке столицы. Политехнический колледж, созданный в 1994 году на базе четырех техникумов, вобрал в себя лучшее из того передового опыта, который десятилетиями помогал педагогам города готовить
+                        блестящие профессиональные кадры республики. г. Нур-Султан (Астана)!</p>
+                </div>
+            </div>
+            <div class="row justify-content-around">
+                <div class="col-xl-3 col-md-6">
+                    <div class="circle"><i class="fas fa-map-marker-alt"></i></div>
+                    <p>Республики. г. Нур-Султан (Астана)!</p>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="circle"><i class="fas fa-phone fa-rotate-90"></i></div>
+                    <p>+777777777777<br>+777777777777</p>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="circle"><i class="fas fa-envelope"></i></div>
+                    <p>OldHokage@gmail.com<br>OldHokage@yahoo.com</p>
+                </div>
+            </div>
+            <form action="{% url 'add_review' %}" method="post" class="row justify-content-center form">
+                <div class="col-xl-5">
+                        <input type="text" placeholder="Ваше Имя" name="name">
+                </div>
+                <div class="col-xl-5">
+                        <input type="email" placeholder="Ваша Почта" name="email">
+                </div>
+                <div class="col-xl-10">
+                    <textarea id="" cols="30" rows="10" placeholder="Напишите письмо" name="text"></textarea></div>
+                <div class="col-xl-2 offset-xl-7"><button class="aaaaaa1">Отправить</button></div>
+                {% csrf_token %}
+            </form>
+        </div>
+    </footer>
+    <footer class="rules">All rights Reserved © 2020</footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main2.js' %}"></script>
+
+</body>
+
+</html>
