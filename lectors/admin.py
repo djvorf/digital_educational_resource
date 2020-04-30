@@ -4,12 +4,25 @@ from django.utils.safestring import mark_safe
 from .models import Lector, Reviews, LectorImages
 
 
+class LectorImageInline(admin.StackedInline):
+    model = LectorImages
+    extra = 1
+
+    readonly_fields = ("get_image",)
+
+    def get_image(self, obj):
+        return mark_safe(f'<img src = {obj.image.url} width="80" height="60"')
+
+    get_image.short_description = "Изображение"
+
+
 @admin.register(Lector)
 class LectorAdmin(admin.ModelAdmin):
     list_display = ("numberPart", "name", "url", "draft")
     list_display_links = ("name", "numberPart", "url")
     list_filter = ("name", "numberPart")
     search_fields = ("name", "numberPart")
+    inlines = [LectorImageInline, ]
     save_on_top = True
     list_editable = ("draft", )
     fieldsets = (
@@ -38,9 +51,13 @@ class ReviewAdmin(admin.ModelAdmin):
     list_filter = ("title", "description", "image", "lector")
     search_fields = ("title", "description", "image", "lector")
     save_on_top = True
+    readonly_fields = ("get_image", )
 
     def get_image(self, obj):
-        return mark_safe(f'<img src = {obj.image.url} width="60" height="60"')
+        return mark_safe(f'<img src = {obj.image.url} width="80" height="60"')
 
     get_image.short_description = "Изображение"
 
+
+admin.site.site_title = "Site fot Polytech"
+admin.site.site_header = "Site fot Polytech"
