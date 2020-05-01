@@ -33,6 +33,7 @@ class LectorAdmin(admin.ModelAdmin):
     list_filter = ("name", "numberPart")
     search_fields = ("name", "numberPart")
     inlines = [LectorImageInline, ]
+    actions = ['publish', 'unpublish']
     save_on_top = True
     form = LectorAdminForm
     list_editable = ("draft", )
@@ -45,6 +46,30 @@ class LectorAdmin(admin.ModelAdmin):
         }),
     )
 
+    def unpublish(self, request, queryset):
+        """Снять с публикации"""
+        row_update = queryset.update(draft=True)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    def publish(self, request, queryset):
+        """Опубликовать"""
+        row_update = queryset.update(draft=False)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    publish.short_description = "Опубликовать"
+    publish.allowed_permissions = ('change', )
+
+    unpublish.short_description = "Снять с публикации"
+    unpublish.allowed_permissions = ('change', )
+
 
 @admin.register(Reviews)
 class ReviewAdmin(admin.ModelAdmin):
@@ -56,7 +81,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 @admin.register(LectorImages)
-class ReviewAdmin(admin.ModelAdmin):
+class ImageAdmin(admin.ModelAdmin):
     list_display = ("title", "description", "image", "lector", "get_image")
     list_display_links = ("title", "description", "image", "lector", "get_image")
     list_filter = ("title", "description", "image", "lector")
