@@ -24,7 +24,7 @@ SECRET_KEY = 'vq&&44!%sx5)!o&&280ij@17l0uhe)(lbocl03*!738pvlx9_g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.107']
 
 # Application definition
 
@@ -160,6 +160,7 @@ CKEDITOR_CONFIGS = {
                 # put the name of your editor.ui.addButton here
                 'Preview',
                 'Maximize',
+                'youtube',
 
             ]},
         ],
@@ -186,7 +187,8 @@ CKEDITOR_CONFIGS = {
             'clipboard',
             'dialog',
             'dialogui',
-            'elementspath'
+            'elementspath',
+            'youtube',
         ]),
     }
 }
