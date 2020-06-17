@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load lector_tag %}
 
 <head>
     <meta charset="UTF-8">
@@ -105,6 +106,18 @@
                         <a href="{{ lector.get_absolute_url }}" class="button1">Начать</a>
                         <hr>
                     {% endfor %}
+
+                {% get_Test as tests %}
+                {% for test in tests %}
+                        <h2 class="lection__title">
+                            {{ lector.title }}</h2>
+                        <p class="lection__text">20 минут теории, 20 минут практики</p>
+                        <p class="lection__text1">
+                        </p>
+                        <a href="{% url 'test_detail' %}" class="button1">Начать</a>
+                        <hr>
+                    {% endfor %}
+
                 </div>
             </div>
             <hr>

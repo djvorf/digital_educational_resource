@@ -3,7 +3,7 @@ from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Lector, Reviews, LectorImages
+from .models import Lector, Reviews, LectorImages, Test, TestQuestions
 
 
 class LectorAdminForm(forms.ModelForm):
@@ -24,6 +24,47 @@ class LectorImageInline(admin.StackedInline):
         return mark_safe(f'<img src = {obj.image.url} width="80" height="60"')
 
     get_image.short_description = "Изображение"
+
+
+class TestQuestionsInline(admin.StackedInline):
+    model = TestQuestions
+    extra = 3
+
+
+@admin.register(Test)
+class TestAdmin(admin.ModelAdmin):
+    list_display = ("title", "shortInfo", "draft",)
+    list_display_links = ("title", "shortInfo",)
+    list_filter = ("title", "shortInfo",)
+    search_fields = ("title", "shortInfo",)
+    inlines = [TestQuestionsInline, ]
+    actions = ['publish', 'unpublish']
+    save_on_top = True
+    list_editable = ("draft", )
+
+    def unpublish(self, request, queryset):
+        """Снять с публикации"""
+        row_update = queryset.update(draft=True)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    def publish(self, request, queryset):
+        """Опубликовать"""
+        row_update = queryset.update(draft=False)
+        if row_update == 1:
+            message_bit = "1 запись была обновлена"
+        else:
+            message_bit = f"{row_update} записей были обновлены"
+        self.message_user(request, f"{message_bit}")
+
+    publish.short_description = "Опубликовать"
+    publish.allowed_permissions = ('change', )
+
+    unpublish.short_description = "Снять с публикации"
+    unpublish.allowed_permissions = ('change', )
 
 
 @admin.register(Lector)
