@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 
@@ -32,9 +32,9 @@ class LectorDetailViews(DetailView):
     slug_field = "url"
 
 
-class TestDetailView(DetailView):
+class TestDetailView(View):
     '''Тесты'''
-    models = Test
-    slug_field = 'url'
-    template_name = "lectors/test_detail.html"
+    def get(self, request):
+        test = Test.objects.filter(draft=False)
+        return render(request, 'lectors/test_detail.html', {"test": test})
 

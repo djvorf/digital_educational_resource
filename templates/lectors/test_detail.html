@@ -91,17 +91,38 @@
     </header>
     <section class="lection" id="lection">
         <div class="container-fluid">
+            {% get_Test as tests %}
+            {% for test in tests %}
                 <div class="row">
                     <div class="col-xl-12">
-                        <h2 class="lection__title" align="center">{{ lector.title }}</h2>
-                        <p class="lection__text1">{{ lector.shortInfo|safe }}</p>
+                        <h2 class="lection__title" align="center">{{ test.title }}</h2>
+                        <p class="lection__text1">{{ test.shortInfo }}</p>
                     </div>
-                    {% for answer in test.name %}
-                        <img class="logo32" src="{{ image.image.url }}"  alt="{{ image.title }}">
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        <br><br><br><br><br><br><br>
-                    {% endfor %}
+
+                    <form method="get">
+                        {% for question in test.testquestions_set.all %}
+                            <p align="center">
+                                {{ question.title }}
+                            </p>
+
+                            <p align="center">
+                                <label>
+                                    <input type="checkbox">
+                                    {{ question.answer }}
+                                </label>
+                                <label>
+                                    <input type="checkbox">
+                                    {{ question.answer1 }}
+                                </label>
+                                <label>
+                                    <input type="checkbox">
+                                    {{ question.answer_true }}
+                                </label>
+                            </p>
+                        {% endfor %}
+                    </form>
                 </div>
+            {% endfor %}
             <hr>
         </div>
 
