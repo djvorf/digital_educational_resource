@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 
-from .models import Lector, Test, TestQuestions
+from .models import Lector
 from .forms import ReviewsForm
 
 
@@ -30,11 +30,3 @@ class LectorDetailViews(DetailView):
     '''Список лекций'''
     model = Lector
     slug_field = "url"
-
-
-class TestDetailView(View):
-    '''Тесты'''
-    def get(self, request):
-        test = Test.objects.filter(draft=False)
-        return render(request, 'lectors/test_detail.html', {"test": test})
-

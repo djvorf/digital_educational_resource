@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Reviews, Test, TestQuestions
+from .models import Reviews
 
 
 class ReviewsForm(forms.ModelForm):
@@ -8,10 +8,3 @@ class ReviewsForm(forms.ModelForm):
     class Meta():
         model = Reviews
         fields = ("name", "email", "text")
-
-
-class TestForm(forms.ModelForm):
-    '''TTUUT'''
-    class Meta():
-        models = TestQuestions
-        fields = ("name", )

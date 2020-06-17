@@ -48,36 +48,3 @@ class LectorImages(models.Model):
     class Meta():
         verbose_name = "Изображение"
         verbose_name_plural = "Изображения"
-
-
-class Test(models.Model):
-    '''Тесты'''
-    title = models.CharField('Заголовок', max_length=100)
-    shortInfo = models.TextField('Информация', default='Напишите сюда текст')
-    draft = models.BooleanField("Черновик", default=False)
-    url = models.SlugField(max_length=160, unique=True, default='Ponimanie')
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse("test_detail", kwargs={"slug": self.url})
-
-    class Meta():
-        verbose_name = "Тест"
-        verbose_name_plural = "Тесты"
-
-
-class TestQuestions(models.Model):
-    title = models.CharField('Название вопроса', max_length=100)
-    answer = models.CharField('Ответ', max_length=100)
-    answer1 = models.CharField('Ответ', max_length=100)
-    answer_true = models.CharField('Правильный ответ', max_length=100)
-    test = models.ForeignKey(Test, verbose_name="Тест", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title
-
-    class Meta():
-        verbose_name = "Вопросы для теста"
-        verbose_name_plural = "Вопросы для теста"
